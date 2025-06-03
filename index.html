@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Saya</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: #ffffff;
+            color: #010101;
+            line-height: 1.6;
+        }
+
+        header {
+            background: white;
+            padding: 20px 40px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+
+        header h1 {
+            color: #000000;
+            margin: 0;
+            font-size: 1.5em;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav a {
+            color: #080808;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f4f4f4;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(to right, #04ed8c, #8c7ae6);
+            color: white;
+            text-align: center;
+            padding: 150px 20px 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .hero h1 {
+            font-size: 2.5em;
+            margin: 20px 0 10px;
+        }
+
+        .hero span {
+            color: #ffe600;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        .hero a {
+            padding: 12px 30px;
+            background: white;
+            color: #5f27cd;
+            border-radius: 30px;
+            font-weight: bold;
+            text-decoration: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .hero a:hover {
+            background: #f1f1f1;
+        }
+
+        /* General Section Styling */
+        section {
+            padding: 80px 20px;
+            max-width: 960px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        section h2 {
+            color: #5f27cd;
+            font-size: 2em;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        section h2::after {
+            content: '';
+            width: 60px;
+            height: 3px;
+            background: #ffe600;
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* About Section */
+        .tentang-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .tentang-content img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #5f27cd;
+        }
+
+        .tentang-content p {
+            text-align: left;
+            max-width: 700px;
+        }
+
+        /* Skills Section */
+        .keahlian-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .keahlian-item {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .keahlian-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .keahlian-item i {
+            font-size: 3em;
+            color: #5f27cd;
+            margin-bottom: 15px;
+        }
+
+        .keahlian-item h3 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        /* Projects Section - Modified for image only */
+        .proyek-grid {
+            display: flex; /* Menggunakan flexbox untuk memusatkan gambar tunggal */
+            justify-content: center; /* Memusatkan gambar secara horizontal */
+            align-items: center; /* Memusatkan gambar secara vertikal jika ada ruang */
+            margin-top: 40px;
+        }
+
+        .proyek-item {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            width: fit-content; /* Sesuaikan lebar dengan konten gambar */
+            max-width: 100%; /* Pastikan tidak melebihi lebar kontainer */
+            transition: transform 0.3s ease;
+            text-align: center; /* Memastikan gambar berada di tengah jika ada padding */
+            padding: 0; /* Hapus padding jika tidak ada teks */
+        }
+
+        .proyek-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .proyek-item img {
+            width: 100%;
+            height: auto; /* Biarkan tinggi menyesuaikan proporsi */
+            max-height: 400px; /* Batasi tinggi maksimum gambar */
+            object-fit: contain; /* Memastikan gambar sepenuhnya terlihat di dalam elemen */
+            border-radius: 10px; /* Agar sudut gambar juga melengkung sesuai item */
+        }
+
+        /* Hapus styling untuk info proyek jika tidak digunakan */
+        .proyek-item-info {
+            display: none; /* Sembunyikan sepenuhnya info proyek */
+        }
+
+
+        /* Contact Section */
+        .kontak-info p {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+
+        .kontak-icons a {
+            color: #5f27cd;
+            font-size: 2.5em;
+            margin: 0 15px;
+            transition: color 0.3s ease;
+        }
+
+        .kontak-icons a:hover {
+            color: #8c7ae6;
+        }
+
+        /* Footer */
+        footer {
+            background: #5f27cd;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9em;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 15px 20px;
+            }
+
+            nav ul {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero {
+                padding: 120px 20px 80px;
+            }
+
+            .hero h1 {
+                font-size: 2em;
+            }
+
+            .hero p {
+                font-size: 1em;
+            }
+
+            section {
+                padding: 60px 15px;
+            }
+
+            section h2 {
+                font-size: 1.8em;
+            }
+
+            .tentang-content {
+                flex-direction: column;
+            }
+
+            .keahlian-grid {
+                grid-template-columns: 1fr;
+            }
+
+            /* Untuk proyek hanya gambar, tidak perlu grid-template-columns */
+            .proyek-grid {
+                flex-direction: column; /* Untuk responsif, pastikan tetap satu kolom */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Portofolio Saya</h1>
+        <nav>
+            <ul>
+                <li><a href="#beranda">Beranda</a></li>
+                <li><a href="#tentang">Tentang Saya</a></li>
+                <li><a href="#keahlian">Keahlian</a></li>
+                <li><a href="#proyek">Proyek</a></li>
+                <li><a href="#kontak">Kontak</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="beranda" class="hero">
+            <h1>Halo, Saya <span>Daniel Marpaung</span></h1>
+            <p>Seorang mahasiswa Universitas Merdeka Malang. Saya senang menciptakan solusi inovatif dan efektif.</p>
+            <a href="#proyek">Lihat Proyek Saya</a>
+        </section>
+
+        <section id="tentang">
+            <h2>Tentang Saya</h2>
+            <div class="tentang-content">
+                <img src="c:\Newporto\1.jpg" alt="Foto Profil Anda"> <p>Nama saya Daniel Marpaung, seorang mahasiswa di Universitas Merdeka Malang. Saat ini saya menempuh studi pada program studi Sistem Informasi. Alasan saya memilih jurusan ini adalah karena saya memiliki ketertarikan yang kuat di bidang teknologi, khususnya dalam pengembangan dan pemrograman web. Saya merasa bahwa dunia web development sangat dinamis dan terus berkembang, sehingga menjadi tantangan sekaligus peluang besar untuk saya kembangkan sebagai bidang keahlian utama saya. Dengan semangat belajar yang tinggi, saya berharap dapat menguasai berbagai teknologi web dan berkontribusi dalam menciptakan solusi digital yang bermanfaat.
+        </section>
+
+        <section id="keahlian">
+            <h2>Keahlian Saya</h2>
+            <div class="keahlian-grid">
+                <div class="keahlian-item">
+                    <i class="fas fa-code"></i>
+                    <h3>Pengembangan Web</h3>
+                    <p>HTML, CSS, JavaScript, React, Node.js</p>
+                </div>
+                <div class="keahlian-item">
+                    <i class="fas fa-paint-brush"></i>
+                    <h3>Desain Grafis</h3>
+                    <p>Adobe Photoshop, Illustrator, Figma</p>
+                </div>
+                <div class="keahlian-item">
+                    <i class="fas fa-database"></i>
+                    <h3>Manajemen Data</h3>
+                    <p>SQL, MongoDB</p>
+                </div>
+                <div class="keahlian-item">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Pengembangan Aplikasi</h3>
+                    <p>React Native, Flutter</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="proyek">
+            <h2>Proyek Saya</h2>
+            ini adalah proyek saya tentang website order makanan
+            <div class="proyek-grid">
+                <div class="proyek-item">
+                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDcxMzJ8MHwxfHNlYXJjaHwxfHxmb29kfGVufDB8fHx8MTcwMTkxNjkwNnww&ixlib=rb-4.0.3&q=80&w=1080" alt="Proyek Makanan">
+                    <img src="c:\Newporto\2.jpg.png"alt>
+                </div>
+            </div>
+        </section>
+
+        <section id="kontak">
+            <h2>Hubungi Saya</h2>
+            <div class="kontak-info">
+                <p>Anda bisa menghubungi saya melalui email atau media sosial:</p>
+                <p>Email: <a href="mailto:emailanda@example.com">emailanda@example.com</a></p>
+                <div class="kontak-icons">
+                    <a href="https://linkedin.com/in/profilanda" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/akunanda" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://twitter.com/akunanda" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Portofolio Saya. Semua hak dilindungi.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
